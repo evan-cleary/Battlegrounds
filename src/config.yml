@@ -1,0 +1,18 @@
+settings:
+########################################
+# useTokens - Should battlegrounds use it's token currency?
+# Note this requires a mysql database
+########################################
+    general:
+        useTokens: false
+########################################
+# Standard mysql options like most plugins
+# this is required for tokens to function
+########################################
+    mysql:
+        host: localhost
+        port: 3306
+        username: root
+        password: ascent
+        database: battlegrounds
+        tableprefix: battlegrounds_

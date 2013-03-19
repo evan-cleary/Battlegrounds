@@ -1,0 +1,10 @@
+name: Battlegrounds
+main: com.division.battlegrounds.core.BattlegroundCore
+version: 0.0.1D
+description: Battlegrounds API
+commands:
+  battleground:
+    description: Base battlegrounds command.
+    permission: battlegrounds.battleground
+    aliases: bg
+authors: [Mastershake71]
