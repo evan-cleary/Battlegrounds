@@ -18,6 +18,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
+ * Core class that initializes the Battlegrounds environment.
+ *
  *
  * @author Evan
  */
@@ -137,7 +139,12 @@ public class BattlegroundCore extends JavaPlugin {
         return config;
     }
 
-    public DataInterface getDatabases() {
+    /**
+     * Returns the data engine used in this instance.
+     *
+     * @return DataInterface used in this instance.
+     */
+    public DataInterface getDataInterface() {
         return dataInterface;
     }
 
@@ -148,5 +155,17 @@ public class BattlegroundCore extends JavaPlugin {
      */
     public Ledger getLedger() {
         return ledger;
+    }
+
+    /**
+     * Sets the data engine used in this instance.
+     *
+     * @param dataInterface New DataInterface to be used in this instance.
+     */
+    public void setDataInterface(DataInterface dataInterface) {
+        this.dataInterface = dataInterface;
+        if (getLedger() != null) {
+            getLedger().setDataInterface(dataInterface);
+        }
     }
 }

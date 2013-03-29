@@ -15,6 +15,15 @@ public class Ledger {
     }
 
     /**
+     * Sets the data engine used for this ledger.
+     *
+     * @param accounts DataInterface to be used.
+     */
+    public void setDataInterface(DataInterface accounts) {
+        this.accounts = accounts;
+    }
+
+    /**
      * Returns whether the specified player can afford the cost.
      *
      * @param player_name Player's balance we will be looking at

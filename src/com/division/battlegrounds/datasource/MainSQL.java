@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * MySQL data engine. This engine is the default for battlegrounds, but may be
+ * overriden if desired.
  *
  * @author Evan
  */
@@ -22,9 +24,9 @@ public class MainSQL implements DataInterface {
         this.bga = instance;
         this.prefix = bga.getBCConfig().getTablePrefix();
     }
-    
+
     @Override
-    public Connection getRawConnection(){
+    public Connection getRawConnection() {
         return connection;
     }
 

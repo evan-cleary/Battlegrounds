@@ -26,7 +26,7 @@ public class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent evt) {
         Player player = evt.getPlayer();
-        core.getDatabases().addPlayer(player.getName());
+        core.getDataInterface().addPlayer(player.getName());
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
