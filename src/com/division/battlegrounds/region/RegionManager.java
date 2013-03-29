@@ -15,6 +15,12 @@ public class RegionManager {
         this.bga = instance;
     }
 
+    /**
+     * Returns the region file for the specified battleground
+     * 
+     * @param battleground
+     * @return Region for given battleground
+     */
     public RegionFile loadRegionFile(String battleground) {
         File regionLoc = new File(bga.getDataFolder(), battleground + "/region.yml");
         if (!regionLoc.exists()) {

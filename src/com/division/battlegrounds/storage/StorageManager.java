@@ -11,7 +11,7 @@ import org.bukkit.inventory.PlayerInventory;
 public class StorageManager {
 
     /**
-     * Saves the player inventory based on battleground.
+     * Saves the player inventory as an object file.
      *
      * @param inventory Player's inventory
      * @param playerName Player's name
