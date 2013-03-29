@@ -1,6 +1,6 @@
 name: Battlegrounds
 main: com.division.battlegrounds.core.BattlegroundCore
-version: 1.0.1RB
+version: 1.0.2DR
 description: Battlegrounds API
 commands:
   battleground:
