@@ -18,7 +18,6 @@ public class Commandquit extends BattlegroundsCommand {
         for (Battleground bg : battlegrounds.values()) {
             if (bg.isPlayerInBattleground(sender)) {
                 bg.removePlayerFromBattleground(sender);
-                sender.sendMessage(String.format(BattlegroundCore.logFormat, "You have quit " + bg.getName()));
                 return;
             }
         }
