@@ -165,7 +165,8 @@ public abstract class Battleground implements Listener {
     }
 
     /**
-     * Returns if the battleground is a dynamic battleground
+     * Returns if the battleground is a dynamic battleground.<br />
+     * This option determines whether a player can join in progress.
      *
      * @return If battleground is dynamic
      */
@@ -273,12 +274,12 @@ public abstract class Battleground implements Listener {
             player.getPlayer().sendMessage(message);
         }
     }
-    
+
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onBattlegroundQuit(BattlegroundQuitEvent evt){
-        if(evt.getBattleground() == this){
-            if(inBattleground.isEmpty()){
-               Bukkit.getServer().getPluginManager().callEvent(new RoundEndEvent(this)); 
+    public void onBattlegroundQuit(BattlegroundQuitEvent evt) {
+        if (evt.getBattleground() == this) {
+            if (inBattleground.isEmpty()) {
+                Bukkit.getServer().getPluginManager().callEvent(new RoundEndEvent(this));
             }
         }
     }
