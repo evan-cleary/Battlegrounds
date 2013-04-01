@@ -4,7 +4,7 @@ package com.division.battlegrounds.core;
  *
  * @author Evan
  */
-public class Gametype {
+public abstract class Gametype {
 
     private String scoringFormat;
     private int argCount;
@@ -13,6 +13,11 @@ public class Gametype {
     public Gametype(String scoringFormat, int argCount) {
         this.scoringFormat = scoringFormat;
         this.argCount = argCount;
+        runInit();
+    }
+    
+    private void runInit(){
+        initGametype();
     }
 
     /**
@@ -83,5 +88,11 @@ public class Gametype {
             throw new IllegalArgumentException("Expected " + argCount + " arguments. Found " + args.length + ".");
         }
         return String.format(scoringFormat, args);
+    }
+    
+    public abstract void runWinConditions();
+    
+    public void initGametype(){
+        throw new UnsupportedOperationException("This function is not supported by this gametype.");
     }
 }
