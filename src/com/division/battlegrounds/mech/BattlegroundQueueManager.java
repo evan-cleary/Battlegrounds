@@ -67,6 +67,9 @@ public class BattlegroundQueueManager implements Listener {
         public void run() {
             Collection<Battleground> bgList = bgr.getRegistrar().values();
             for (Battleground bg : bgList) {
+                if(bg.getQueue().isEmpty()){
+                    continue;
+                }
                 if (bg.isActive()) {
                     if (bg.isDynamic() && !bg.isFull()) {
                         bg.addPlayerToBattleground(bg.getQueue().get(0));
