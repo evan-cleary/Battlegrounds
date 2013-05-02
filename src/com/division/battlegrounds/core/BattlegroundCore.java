@@ -9,6 +9,7 @@ import com.division.battlegrounds.listeners.PlayerListener;
 import com.division.battlegrounds.mech.BattlegroundQueueManager;
 import com.division.battlegrounds.mech.BattlegroundRegistrar;
 import com.division.battlegrounds.region.RegionManager;
+import com.division.battlegrounds.scoreboard.ScoreboardManager;
 import java.sql.SQLException;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -30,6 +31,7 @@ public class BattlegroundCore extends JavaPlugin {
     public static String logFormat = ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "Battlegrounds" + ChatColor.GRAY + "]" + ChatColor.RED + " %s";
     private static BattlegroundCore instance;
     public BattlegroundQueueManager bgqm;
+    private ScoreboardManager sbManager;
     private RegionManager rgManager;
     private BattlegroundsConfig config;
     private DataInterface dataInterface;
@@ -51,6 +53,8 @@ public class BattlegroundCore extends JavaPlugin {
         console.sendMessage(String.format(logFormat, "Queue Manager awaiting players."));
         this.rgManager = new RegionManager(this);
         console.sendMessage(String.format(logFormat, "RegionManager is re-building barriers."));
+        this.sbManager = new ScoreboardManager();
+        console.sendMessage(String.format(logFormat, "ScoreboardManager has been started."));
 
         if (config.isUsingTokens()) {
             console.sendMessage(String.format(logFormat, "Attempting to access battleground dataservers..."));
@@ -167,5 +171,14 @@ public class BattlegroundCore extends JavaPlugin {
         if (getLedger() != null) {
             getLedger().setDataInterface(dataInterface);
         }
+    }
+
+    /**
+     * Gets the ScoreboardManager used in this instance
+     *
+     * @return ScoreboardManager used in this instance
+     */
+    public ScoreboardManager getScoreboardManager() {
+        return sbManager;
     }
 }
