@@ -25,7 +25,7 @@ public class Commandqueue extends BattlegroundsCommand {
                 if (bg != null) {
                     bg.removeFromQueue(sender);
                 } else {
-                    sender.sendMessage(ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "Battlegrounds" + ChatColor.GRAY + "]" + ChatColor.RED + " You are not in a queue.");
+                    BattlegroundCore.sendMessage(sender, " You are not in a queue.");
                 }
                 return;
             } else {
@@ -34,11 +34,11 @@ public class Commandqueue extends BattlegroundsCommand {
                     if (bg != null) {
                         bg.addToQueue(sender);
                     } else {
-                        sender.sendMessage(String.format(BattlegroundCore.logFormat, "Unknown battleground: " + args[1]));
+                        BattlegroundCore.sendMessage(sender, "Unknown battleground: " + args[1]);
                     }
                     return;
                 } else {
-                    sender.sendMessage(String.format(BattlegroundCore.logFormat, "You are already in a queue."));
+                    BattlegroundCore.sendMessage(sender, "You are already in a queue.");
                     return;
                 }
             }
@@ -52,17 +52,17 @@ public class Commandqueue extends BattlegroundsCommand {
                     if (BG != null) {
                         BG.addToQueue(sender);
                     } else {
-                        sender.sendMessage(ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "Battlegrounds" + ChatColor.GRAY + "]" + ChatColor.RED + " Unknown battleground: " + battleground);
+                        BattlegroundCore.sendMessage(sender, "Unknown battleground: " + battleground);
                     }
                 } else {
-                    sender.sendMessage(ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "Battlegrounds" + ChatColor.GRAY + "]" + ChatColor.RED + " You are already in a queue.");
+                    BattlegroundCore.sendMessage(sender, "You are already in a queue.");
                 }
                 return;
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Invalid number of arguements.");
+            BattlegroundCore.sendMessage(sender, "Invalid number of arguements.");
             return;
         }
-        sender.sendMessage(ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "Battlegrounds" + ChatColor.GRAY + "]" + ChatColor.RED + " Unkown sub command...");
+        BattlegroundCore.sendMessage(sender, "Unkown sub command...");
     }
 }

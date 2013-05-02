@@ -24,7 +24,7 @@ public class BattlegroundQueueManager implements Listener {
 
     public BattlegroundQueueManager(BattlegroundRegistrar bgr) {
         this.bgr = bgr;
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(BattlegroundCore.getInstance(), new queueRunner(), 100L, 100L);
+        Bukkit.getServer().getScheduler().runTaskTimer(BattlegroundCore.getInstance(), new queueRunner(), 100L, 100L);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

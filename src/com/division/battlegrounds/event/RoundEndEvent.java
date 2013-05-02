@@ -20,7 +20,7 @@ public class RoundEndEvent extends Event {
     /**
      * Returns the Battleground involved in this event.
      *
-     * @return Battleground which is involved in this evet.
+     * @return Battleground which is involved in this event.
      */
     public Battleground getBattleground() {
         return battleground;

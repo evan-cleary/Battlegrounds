@@ -19,16 +19,16 @@ public class Commandwatch extends BattlegroundsCommand {
             String bgName = args[1];
             Battleground bg = BattlegroundCore.getInstance().getRegistrar().getBattleground(bgName);
             if (bg == null) {
-                sender.sendMessage(String.format(BattlegroundCore.logFormat, "Unable to find battleground: " + bgName));
+                BattlegroundCore.sendMessage(sender, "Unable to find battleground: " + bgName);
                 return;
             }
             if (!bg.isActive()) {
-                sender.sendMessage(String.format(BattlegroundCore.logFormat, "That battleground is not currently active."));
+                BattlegroundCore.sendMessage(sender, "That battleground is not currently active.");
                 return;
             }
             Scoreboard scoreboard = BattlegroundCore.getInstance().getScoreboardManager().getScoreboard(bg);
             sender.setScoreboard(scoreboard);
-            sender.sendMessage(String.format(BattlegroundCore.logFormat, "You are now watching the " + bgName + " scoreboard."));
+            BattlegroundCore.sendMessage(sender, "You are now watching the " + bgName + " scoreboard.");
         }
     }
 }

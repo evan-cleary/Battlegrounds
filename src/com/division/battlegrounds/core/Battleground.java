@@ -260,7 +260,7 @@ public abstract class Battleground implements Listener {
         BattlegroundPlayer bgPlayer = getBattlegroundPlayer(player.getName());
         player.teleport(inBattleground.get(bgPlayer));
         inBattleground.remove(bgPlayer);
-        player.sendMessage(String.format(BattlegroundCore.logFormat, "You have been removed from " + getName()));
+        BattlegroundCore.sendMessage(player, "You have been removed from " + getName());
         Bukkit.getServer().getPluginManager().callEvent(new BattlegroundQuitEvent(this, player));
     }
 

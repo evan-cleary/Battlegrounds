@@ -108,6 +108,16 @@ public class BattlegroundCore extends JavaPlugin {
     }
 
     /**
+     * Send a message to a player that is in Battlegrounds message format.
+     *
+     * @param player Player we are sending a message to.
+     * @param message Message we are sending to the player.
+     */
+    public static void sendMessage(Player player, String message) {
+        player.sendMessage(String.format(logFormat, message));
+    }
+
+    /**
      * Returns the plugin's main instance.
      *
      * @return BattlegroundCore singleton

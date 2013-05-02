@@ -21,6 +21,6 @@ public class Commandquit extends BattlegroundsCommand {
                 return;
             }
         }
-        sender.sendMessage(String.format(BattlegroundCore.logFormat, "You are not in a battleground."));
+        BattlegroundCore.sendMessage(sender, "You are not in a battleground.");
     }
 }
