@@ -1,7 +1,13 @@
 package com.division.battlegrounds.storage;
 
 import com.division.battlegrounds.core.BattlegroundCore;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 /**
@@ -31,10 +37,11 @@ public class StorageManager {
             oos.writeObject(sCrate);
             oos.flush();
         } catch (Exception ex) {
-            ex.printStackTrace();
         } finally {
             try {
-                fos.close();
+                if (fos != null) {
+                    fos.close();
+                }
             } catch (Exception ex) {
             }
         }
@@ -60,11 +67,26 @@ public class StorageManager {
         } catch (Exception ex) {
         } finally {
             try {
-                fis.close();
+                if (fis != null) {
+                    fis.close();
+                }
             } catch (Exception ex) {
             }
         }
         return null;
+    }
+
+    public static void loadOfflineStorage(Player player) {
+        if (player != null && !player.isDead()) {
+            SupplyCrate crate = loadStorageCrate(player.getName());
+            if (crate != null) {
+                player.getInventory().clear();
+                player.getInventory().setArmorContents(new ItemStack[player.getInventory().getArmorContents().length]);
+                player.getInventory().setArmorContents(crate.uncrateArmor());
+                player.getInventory().setContents(crate.uncrateContents());
+                BattlegroundCore.sendMessage(player, "Your inventory has been restored.");
+            }
+        }
     }
 
     public static boolean hasStorageCrate(String playerName) {

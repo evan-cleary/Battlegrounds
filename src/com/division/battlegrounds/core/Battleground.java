@@ -2,6 +2,8 @@ package com.division.battlegrounds.core;
 
 import com.division.battlegrounds.event.*;
 import com.division.battlegrounds.region.Region;
+import com.division.battlegrounds.storage.StorageManager;
+import com.division.battlegrounds.storage.SupplyCrate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 
 /**
  *
@@ -285,8 +288,22 @@ public abstract class Battleground implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
+    public void onBattlgroundJoin(BattlegroundJoinEvent evt) {
+        if (evt.getBattleground() == this) {
+            StorageManager.saveStorageCrate(evt.getPlayer().getInventory(), evt.getPlayer().getName());
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onRoundEnd(RoundEndEvent evt) {
         if (evt.getBattleground() == this) {
+            for (BattlegroundPlayer bgPlayer : inBattleground.keySet()) {
+                Player player = bgPlayer.getPlayer();
+                player.teleport(inBattleground.get(bgPlayer));
+                player.setScoreboard(Bukkit.getServer().getScoreboardManager().getMainScoreboard());
+                StorageManager.loadOfflineStorage(player);
+            }
+            this.inBattleground.clear();
             this.isBattlegroundActive = false;
         }
     }
@@ -295,6 +312,12 @@ public abstract class Battleground implements Listener {
     public void onRoundStart(RoundStartEvent evt) {
         if (evt.getBattleground() == this) {
             this.isBattlegroundActive = true;
+            for (BattlegroundPlayer bgPlayer : inBattleground.keySet()) {
+                Player player = bgPlayer.getPlayer();
+                if (player != null) {
+                    StorageManager.saveStorageCrate(player.getInventory(), player.getName());
+                }
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.division.battlegrounds.listeners;
 import com.division.battlegrounds.core.Battleground;
 import com.division.battlegrounds.core.BattlegroundCore;
 import com.division.battlegrounds.event.BattlegroundQuitEvent;
+import com.division.battlegrounds.storage.StorageManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -27,6 +28,7 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent evt) {
         Player player = evt.getPlayer();
         core.getDataInterface().addPlayer(player.getName());
+        StorageManager.loadOfflineStorage(evt.getPlayer());
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
